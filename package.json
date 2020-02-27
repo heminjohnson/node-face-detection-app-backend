@@ -1,0 +1,19 @@
+{
+  "name": "face-detection-app-backend",
+  "version": "1.0.0",
+  "description": "face detection app backend",
+  "repository": "https://github.com/heminjohnson/Node-Face-Recognition-App-Backend.git",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Hemin Johnson",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
