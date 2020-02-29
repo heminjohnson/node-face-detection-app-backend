@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 const database = {
   users: [
@@ -79,7 +81,7 @@ app.put("/image", (req, res) => {
   database.users.forEach(user => {
     if (user.id === id) {
       found = true;
-      user.entries++
+      user.entries++;
       return res.json(user.entries);
     }
   });
