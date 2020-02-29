@@ -55,7 +55,11 @@ app.post("/register", (req, res) => {
     joined: new Date()
   });
 
-  res.json(database.users[database.users.length - 1]);
+  const addedUser = database.users[database.users.length - 1];
+
+  delete addedUser.password;
+
+  res.json(addedUser);
 });
 
 app.get("/profile/:id", (req, res) => {
