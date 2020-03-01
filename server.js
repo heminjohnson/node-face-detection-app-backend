@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const knex = require("knex");
 
-const postgres = knex({
+const db = knex({
   client: "pg",
   connection: {
     host: "127.0.0.1",
@@ -57,20 +57,17 @@ app.post("/signin", (req, res) => {
 app.post("/register", (req, res) => {
   const { email, name, password } = req.body;
 
-  database.users.push({
-    id: "3",
-    name: name,
-    email: email,
-    password: password,
-    entries: 0,
-    joined: new Date()
-  });
-
-  const addedUser = database.users[database.users.length - 1];
-
-  delete addedUser.password;
-
-  res.json(addedUser);
+  db("users")
+    .returning("*")
+    .insert({
+      name: name,
+      email: email,
+      joined: new Date()
+    })
+    .then(user => {
+      res.json(user[0]);
+    })
+    .catch(err => res.status(400).json("unable to join"));
 });
 
 app.get("/profile/:id", (req, res) => {
