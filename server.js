@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 const database = {
   users: [
@@ -53,7 +55,11 @@ app.post("/register", (req, res) => {
     joined: new Date()
   });
 
-  res.json(database.users[database.users.length - 1]);
+  const addedUser = database.users[database.users.length - 1];
+
+  delete addedUser.password;
+
+  res.json(addedUser);
 });
 
 app.get("/profile/:id", (req, res) => {
@@ -79,7 +85,7 @@ app.put("/image", (req, res) => {
   database.users.forEach(user => {
     if (user.id === id) {
       found = true;
-      user.entries++
+      user.entries++;
       return res.json(user.entries);
     }
   });
@@ -89,6 +95,6 @@ app.put("/image", (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("app is listening on port 3000");
+app.listen(4000, () => {
+  console.log("app is listening on port 4000");
 });
