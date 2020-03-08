@@ -7,6 +7,8 @@ const { handleRegister } = require("./controllers/register");
 const { handleProfile } = require("./controllers/profile");
 const { handleImage } = require("./controllers/image");
 
+const PORT = process.env.PORT || 4000
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -28,6 +30,6 @@ app.put("/image", (req, res) => {
   handleImage(req, res);
 });
 
-app.listen(4000, () => {
-  console.log("app is listening on port 4000");
+app.listen(PORT, () => {
+  console.log(`app is listening on port ${PORT}`);
 });
