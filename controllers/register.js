@@ -4,7 +4,7 @@ const { db } = require("../database/database");
 const handleRegister = (req, res) => {
   const { email, name, password } = req.body;
 
-  if (email === "" || name === "" || password === "") {
+  if (!email || !name || !password) {
     return res.status(400).json("unable to join");
   }
 
