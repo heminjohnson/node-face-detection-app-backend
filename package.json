@@ -5,7 +5,8 @@
   "repository": "https://github.com/heminjohnson/Node-Face-Recognition-App-Backend.git",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start-dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "Hemin Johnson",
   "license": "ISC",
